@@ -1,10 +1,12 @@
 <script>
   import ButtonA from '@/components/ButtonTypeA.vue';
   import ButtonB from '@/components/ButtonTypeB.vue';
+  import ButtonC from '@/components/ButtonTypeC.vue';
   export default{
     components: {
       ButtonA,
       ButtonB,
+      ButtonC,
     },
     data() {
       return {
@@ -13,24 +15,32 @@
         //   right: '服務',
         //   state: false,
         // },
-        phoneBtn:{
-          left:'市話',
-          right: '手機',
-          state: false,
-          toggle: false,
-        },
-        activeServiceBtn:{
-          left:'中止',
-          right: '服務',
-          state: true,
-          toggle: true,
-        },
-        activePhoneBtn:{
-          left:'市話',
-          right: '手機',
-          state: true,
-          toggle: false,
-        },
+        btnBData: [
+          {
+            left:'中止',
+            right: '服務',
+            state: false,
+            toggle: true,
+          },
+          {
+            left:'市話',
+            right: '手機',
+            state: false,
+            toggle: false,
+          },
+          {
+            left:'中止',
+            right: '服務',
+            state: true,
+            toggle: true,
+          },
+          {
+            left:'市話',
+            right: '手機',
+            state: true,
+            toggle: false,
+          },
+        ],
       };
     },
   };
@@ -47,11 +57,15 @@
       <ButtonA type="next">下一步</ButtonA>
     </div>
     <div class="btns">
-      <ButtonB />
-      <ButtonB :type="activeServiceBtn"/>
-      <ButtonB :type="phoneBtn"/>
-      <ButtonB :type="activePhoneBtn"/>
-      
+      <ButtonB v-for="(item,key) in btnBData" :key="key" :type="item" @click="item.state = !item.state"/>
+      <ButtonC>
+        <template #left>
+          左
+        </template>
+        <template #right>
+          右
+        </template>
+      </ButtonC>
     </div>
   </main>
 </template>

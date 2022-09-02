@@ -18,8 +18,12 @@
 
 <template>
     <div class="btn">
-        <div class="left" :class="{ active:!type.state,stop:type.toggle }">{{ type.left }}</div>
-        <div class="right" :class="{ active:type.state }">{{ type.right }}</div>
+        <div class="left" :class="{ active:!type.state,stop:type.toggle }">
+            <slot name="left"></slot>
+        </div>
+        <div class="right" :class="{ active:type.state }">
+            <slot name="right"></slot>
+        </div>
     </div>
 </template>
 
